@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Bot Tester</title>
+    
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="bots.js"></script>
+    <script src="srcbot.js"></script>
+    
+    <script>        
+        $(function() {
+            var input = $("input");
+            $("form").submit(function(e) {
+                var r = Bots.sendMessage("Image Parsing Bot", input.val(), { "USER": "mrfishie" });
+                $("<p style='display:none;'></p>").appendTo("div").text("[mrfishie] " + input.val()).fadeIn("fast", toBottom);
+                input.val("");
+                
+                setTimeout(function() {
+                    for (var i = 0; i < r.length; i++) {
+                        $("<p style='display:none;'></p>").appendTo("div").text(r[i]).fadeIn("fast", toBottom);
+                    }
+                }, Math.random() * 1000);
+                                
+                e.preventDefault();
+                return false;
+            });
+        });
+        
+        function toBottom() {
+            $("div").scrollTop($("div").get("scrollHeight"));
+        }
+    </script>
+    
+    <style>
+        body{
+            text-align: center;
+        }
+        div {
+            width:40%;
+            height:400px;
+            overflow:auto;
+            margin:auto;
+            padding-top:10px;
+	    font-size:16px;
+	    font-family:Segoe UI;
+	    border-radius:5px;
+	    border:none;
+	    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+	    padding:10px;
+        }
+        input {
+            width:40%;
+            margin:auto;
+            font-size:16px;
+	    font-family:Segoe UI;
+	    border-radius:50px;
+	    border:none;
+	    color:white;
+	    background-color:rgb(0,54,100);
+	    padding:10px;
+	    padding-right:20px;
+	    padding-left:20px;
+	    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+
+        }
+        button {
+            width:50px;
+            transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+	font-size:17px;
+	font-family:Segoe UI;
+	margin:2px;
+	border-radius:2px;
+	border:none;
+	color:rgb(0,111,221);
+	font-weight:50;
+	background-color:rgb(228,228,228);
+	padding:10px;
+	box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);}
+        }
+        p {
+            margin:0;
+            padding:0;
+        }
+    </style>
+</head>
+
+<body>
+
+<div></div>
+<form method="get" action="#">
+    <input type="text" /><button type="submit">Go</button>
+</form>
+
+</body>
+</html>
